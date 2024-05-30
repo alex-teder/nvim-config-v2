@@ -56,6 +56,17 @@ return {
 			end,
 		})
 
+		-- Add the border on hover and on signature help popup window
+		local handlers = {
+			["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "single" }),
+			["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" }),
+		}
+
+		-- Add border to the diagnostic popup window
+		vim.diagnostic.config({
+			float = { border = "single" },
+		})
+
 		-- used to enable autocompletion (assign to every lsp server config)
 		local capabilities = cmp_nvim_lsp.default_capabilities()
 
@@ -64,6 +75,24 @@ return {
 			function(server_name)
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
+					handlers = handlers,
+				})
+			end,
+			["cssls"] = function()
+				-- configure css server
+				lspconfig["cssls"].setup({
+					capabilities = capabilities,
+					settings = {
+						css = { validate = true, lint = {
+							unknownAtRules = "ignore",
+						} },
+						scss = { validate = true, lint = {
+							unknownAtRules = "ignore",
+						} },
+						less = { validate = true, lint = {
+							unknownAtRules = "ignore",
+						} },
+					},
 				})
 			end,
 			["svelte"] = function()
