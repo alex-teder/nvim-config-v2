@@ -1,4 +1,4 @@
-local function check_project_files_pattern(pattern)
+local function check_file_in_rootdir(pattern)
 	local project_root = vim.fn.getcwd()
 	local handle = vim.loop.fs_scandir(project_root)
 
@@ -22,33 +22,6 @@ local function check_project_files_pattern(pattern)
 
 	return false
 end
--- -- Function to check if a file exists in the project directory
--- local function file_exists(filename)
--- 	local stat = vim.loop.fs_stat(filename)
--- 	return stat and stat.type == "file" or false
--- end
---
--- -- Function to check if any file in a table of possible names exists in the project directory
--- local function check_project_files(filenames)
--- 	local project_root = vim.fn.getcwd()
--- 	for _, filename in ipairs(filenames) do
--- 		local full_path = project_root .. "/" .. filename
--- 		if file_exists(full_path) then
--- 			return true
--- 		end
--- 	end
--- 	return false
--- end
-
--- lint.linters.eslint_d.args = {
--- 	"--format",
--- 	"json",
--- 	"--stdin",
--- 	"--stdin-filename",
--- 	function()
--- 		return vim.api.nvim_buf_get_name(0)
--- 	end,
--- }
 
 return {
 	"mfussenegger/nvim-lint",
@@ -65,7 +38,7 @@ return {
 			python = { "pylint" },
 		}
 
-		if not check_project_files_pattern("eslint") then
+		if not check_file_in_rootdir("eslint") then
 			table.insert(lint.linters.eslint_d.args, 1, "--no-warn-ignored")
 		end
 
