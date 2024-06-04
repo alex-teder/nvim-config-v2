@@ -35,7 +35,7 @@ return {
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
 			svelte = { "eslint_d" },
-			python = { "pylint" },
+			-- python = { "pylint" },
 		}
 
 		if not check_file_in_rootdir("eslint") then

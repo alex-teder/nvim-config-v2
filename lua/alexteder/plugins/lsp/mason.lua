@@ -37,6 +37,7 @@ return {
 				"emmet_language_server",
 				"prismals",
 				"pyright",
+				"volar",
 			},
 		})
 
