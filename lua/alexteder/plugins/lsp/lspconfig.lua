@@ -38,21 +38,14 @@ return {
 				opts.desc = "See available code actions"
 				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
 
-				opts.desc = "Show buffer diagnostics"
-				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+				opts.desc = "Smart rename"
+				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- see available code actions, in visual mode will apply to selection
 
 				opts.desc = "Show line diagnostics"
-				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+				keymap.set("n", "<leader><space>", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
 				opts.desc = "Show documentation for what is under cursor"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-				vim.keymap.set(
-					"n",
-					"<leader><space>",
-					":lua vim.diagnostic.open_float()<CR>",
-					{ silent = true, desc = "Show diagnostics message" }
-				)
 			end,
 		})
 

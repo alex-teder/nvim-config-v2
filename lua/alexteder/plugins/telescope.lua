@@ -5,7 +5,21 @@ return {
 		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
-	config = function()
+	opts = {
+		pickers = {
+			buffers = {
+				show_all_buffers = true,
+				sort_lastused = true,
+				mappings = {
+					n = {
+						["dd"] = "delete_buffer",
+					},
+				},
+			},
+		},
+	},
+	config = function(_, opts)
+		require("telescope").setup(opts)
 		require("telescope").load_extension("fzf")
 
 		local builtin = require("telescope.builtin")

@@ -1,7 +1,9 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	config = function()
-		require("gitsigns").setup()
+		require("gitsigns").setup({
+			signs_staged_enable = false,
+		})
 
 		vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", { silent = true, desc = "Next Hunk" })
 		vim.keymap.set("n", "<leader>gN", ":Gitsigns prev_hunk<CR>", { silent = true, desc = "Previous Hunk" })

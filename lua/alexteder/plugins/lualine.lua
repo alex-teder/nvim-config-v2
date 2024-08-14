@@ -67,7 +67,7 @@ return {
 			},
 			sections = {
 				lualine_a = { "mode" },
-				lualine_b = { "branch", "diff", "diagnostics" },
+				lualine_b = { "diff", "diagnostics" },
 				lualine_c = { { "filename", file_status = true, symbols = { modified = "●" } } },
 				lualine_x = { "encoding", "filetype", "filesize" },
 				lualine_y = { "progress" },

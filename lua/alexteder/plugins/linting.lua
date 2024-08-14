@@ -1,27 +1,27 @@
-local function check_file_in_rootdir(pattern)
-	local project_root = vim.fn.getcwd()
-	local handle = vim.loop.fs_scandir(project_root)
-
-	if not handle then
-		return false
-	end
-
-	local function iterate()
-		return vim.loop.fs_scandir_next(handle)
-	end
-
-	for name in iterate do
-		if name:match(pattern) then
-			local full_path = project_root .. "/" .. name
-			local stat = vim.loop.fs_stat(full_path)
-			if stat and stat.type == "file" then
-				return true
-			end
-		end
-	end
-
-	return false
-end
+-- local function check_file_in_rootdir(pattern)
+-- 	local project_root = vim.fn.getcwd()
+-- 	local handle = vim.loop.fs_scandir(project_root)
+--
+-- 	if not handle then
+-- 		return false
+-- 	end
+--
+-- 	local function iterate()
+-- 		return vim.loop.fs_scandir_next(handle)
+-- 	end
+--
+-- 	for name in iterate do
+-- 		if name:match(pattern) then
+-- 			local full_path = project_root .. "/" .. name
+-- 			local stat = vim.loop.fs_stat(full_path)
+-- 			if stat and stat.type == "file" then
+-- 				return true
+-- 			end
+-- 		end
+-- 	end
+--
+-- 	return false
+-- end
 
 return {
 	"mfussenegger/nvim-lint",
@@ -38,9 +38,15 @@ return {
 			-- python = { "pylint" },
 		}
 
-		if not check_file_in_rootdir("eslint") then
-			table.insert(lint.linters.eslint_d.args, 1, "--no-warn-ignored")
-		end
+		lint.linters.eslint_d = require("lint.util").wrap(lint.linters.eslint_d, function(diagnostic)
+			-- try to ignore "No ESLint configuration found" error
+			-- if diagnostic.message:find("Error: No ESLint configuration found") then -- old version
+			-- update: 20240814, following is working
+			if diagnostic.message:find("Error: Could not find config file") then
+				return nil
+			end
+			return diagnostic
+		end)
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
