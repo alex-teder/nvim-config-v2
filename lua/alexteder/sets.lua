@@ -28,14 +28,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
-vim.diagnostic.config({
-	virtual_text = {
-		severity = {
-			min = vim.diagnostic.severity.INFO,
-			max = vim.diagnostic.severity.ERROR,
-		},
-	},
-	signs = true, -- Show signs for diagnostics (optional)
-	underline = true, -- Underline diagnostics (optional)
-})

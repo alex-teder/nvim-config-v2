@@ -11,3 +11,5 @@ keymap.set("n", "<C-u>", "<C-u>zz")
 keymap.set("n", "Q", "<nop>")
 
 keymap.set("n", "<leader>vs", ":vsplit<CR>", { desc = "Vertical split" })
+
+keymap.set("n", "<leader><CR>", ":noh<CR>", { desc = "Clear highlights" })
