@@ -22,6 +22,7 @@ opt.signcolumn = "yes"
 opt.backspace = "indent,eol,start"
 
 opt.swapfile = false
+opt.writebackup = false
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
