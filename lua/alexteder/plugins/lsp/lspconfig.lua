@@ -143,6 +143,27 @@ return {
 					},
 				})
 			end,
+			["ts_ls"] = function()
+				lspconfig["ts_ls"].setup({
+					capabilities = capabilities,
+					init_options = {
+						plugins = {
+							{
+								name = "@vue/typescript-plugin",
+								location = "/home/ateder/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin",
+								languages = { "vue", "javascript", "typescript" },
+							},
+						},
+					},
+					filetypes = {
+						"javascript",
+						"javascriptreact",
+						"typescript",
+						"typescriptreact",
+						"vue",
+					},
+				})
+			end,
 		})
 	end,
 }
