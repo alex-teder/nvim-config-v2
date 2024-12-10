@@ -6,20 +6,36 @@ return {
 		vim.g.loaded_netrwPlugin = 1
 		require("nvim-tree").setup({
 			view = {
+				adaptive_size = true,
 				signcolumn = "no",
 				float = {
 					enable = true,
 					open_win_config = {
+						title = "nvim-tree",
+						title_pos = "center",
 						relative = "editor",
-						border = "rounded",
+						border = "double",
 						height = 33,
-						width = 100,
 						row = (vim.o.lines - 35) / 2,
-						col = (vim.o.columns - 102) / 2,
+						col = 1,
 					},
 				},
 			},
-			renderer = { highlight_diagnostics = "all" },
+			renderer = { icons = { diagnostics_placement = "before" } },
+			diagnostics = {
+				enable = true,
+				show_on_dirs = true,
+				debounce_delay = 500,
+				severity = {
+					min = vim.diagnostic.severity.ERROR,
+				},
+				icons = {
+					hint = "H",
+					info = "I",
+					warning = "W",
+					error = "!",
+				},
+			},
 			update_focused_file = { enable = true },
 			filters = { custom = { "^.git$" } },
 			git = {
