@@ -6,7 +6,6 @@ return {
 		vim.g.loaded_netrwPlugin = 1
 		require("nvim-tree").setup({
 			view = {
-				adaptive_size = true,
 				signcolumn = "no",
 				float = {
 					enable = true,
@@ -16,8 +15,9 @@ return {
 						relative = "editor",
 						border = "single",
 						height = 33,
+						width = 100,
 						row = (vim.o.lines - 35) / 2,
-						col = 1,
+						col = (vim.o.columns - 105) / 2,
 					},
 				},
 			},
