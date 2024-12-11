@@ -14,7 +14,7 @@ return {
 						title = "nvim-tree",
 						title_pos = "center",
 						relative = "editor",
-						border = "double",
+						border = "single",
 						height = 33,
 						row = (vim.o.lines - 35) / 2,
 						col = 1,

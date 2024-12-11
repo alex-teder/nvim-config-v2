@@ -6,12 +6,24 @@ return {
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 	},
 	opts = {
+		extensions = {
+			fzf = {},
+		},
 		defaults = {
 			selection_caret = "  ",
 			prompt_prefix = "󱞩 ",
 		},
 		pickers = {
+			git_files = { theme = "ivy" },
+			live_grep = { theme = "ivy" },
+			git_branches = { theme = "ivy" },
+			help_tags = { theme = "ivy" },
+			lsp_references = {
+				theme = "ivy",
+				show_line = false,
+			},
 			buffers = {
+				theme = "ivy",
 				show_all_buffers = true,
 				sort_lastused = true,
 				mappings = {
@@ -27,25 +39,13 @@ return {
 		require("telescope").load_extension("fzf")
 
 		local builtin = require("telescope.builtin")
-		local themes = require("telescope.themes")
 
-		vim.keymap.set("n", "<leader>ff", function()
-			builtin.git_files(themes.get_ivy())
-		end, {})
-		vim.keymap.set("n", "<leader>fg", function()
-			builtin.live_grep(themes.get_ivy())
-		end, {})
-		vim.keymap.set("n", "<leader>w", function()
-			builtin.buffers(themes.get_ivy())
-		end, {})
-		vim.keymap.set("n", "<leader>gb", function()
-			builtin.git_branches(themes.get_ivy())
-		end, {})
-		vim.keymap.set("n", "<leader>fh", function()
-			builtin.help_tags(themes.get_ivy())
-		end, {})
-		vim.keymap.set("n", "<leader>fr", function()
-			builtin.lsp_references(themes.get_ivy(), { show_line = false })
-		end, { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>ff", builtin.git_files, {})
+		vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+		vim.keymap.set("n", "<leader>w", builtin.buffers, {})
+		vim.keymap.set("n", "<leader>gb", builtin.git_branches, {})
+		vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+		vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>re", builtin.resume, { noremap = true, silent = true })
 	end,
 }
