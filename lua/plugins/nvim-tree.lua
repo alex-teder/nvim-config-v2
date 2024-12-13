@@ -5,8 +5,18 @@ return {
 		vim.g.loaded_netrw = 1
 		vim.g.loaded_netrwPlugin = 1
 		require("nvim-tree").setup({
+			on_attach = function(bufnr)
+				local api = require("nvim-tree.api")
+				api.config.mappings.default_on_attach(bufnr)
+				vim.keymap.set(
+					"n",
+					"<Esc>",
+					api.tree.close,
+					{ buffer = bufnr, noremap = true, silent = true, nowait = true }
+				)
+			end,
 			view = {
-				signcolumn = "no",
+				signcolumn = "yes",
 				float = {
 					enable = true,
 					open_win_config = {
@@ -14,10 +24,10 @@ return {
 						title_pos = "center",
 						relative = "editor",
 						border = "single",
-						height = 33,
-						width = 100,
-						row = (vim.o.lines - 35) / 2,
-						col = (vim.o.columns - 105) / 2,
+						height = math.floor(vim.o.lines * 0.75),
+						width = math.floor(vim.o.columns * 0.7),
+						row = math.floor((vim.o.lines - math.floor(vim.o.lines * 0.75) - 2) / 2),
+						col = math.floor((vim.o.columns - math.floor(vim.o.columns * 0.7) - 2) / 2),
 					},
 				},
 			},
