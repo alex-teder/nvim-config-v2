@@ -18,5 +18,3 @@ keymap.set("n", "<leader>2", ":tabn 2<CR>", { noremap = true, silent = true })
 keymap.set("n", "<leader>3", ":tabn 3<CR>", { noremap = true, silent = true })
 keymap.set("n", "<leader>4", ":tabn 4<CR>", { noremap = true, silent = true })
 keymap.set("n", "<leader>5", ":tabn 5<CR>", { noremap = true, silent = true })
-
-keymap.set("n", "<leader>`", ":tab Git<CR>", { noremap = true, silent = true })
