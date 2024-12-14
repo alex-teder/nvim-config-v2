@@ -19,16 +19,20 @@ return {
 				signcolumn = "yes",
 				float = {
 					enable = true,
-					open_win_config = {
-						title = "nvim-tree",
-						title_pos = "center",
-						relative = "editor",
-						border = "single",
-						height = math.floor(vim.o.lines * 0.75),
-						width = math.floor(vim.o.columns * 0.7),
-						row = math.floor((vim.o.lines - math.floor(vim.o.lines * 0.75) - 2) / 2),
-						col = math.floor((vim.o.columns - math.floor(vim.o.columns * 0.7) - 2) / 2),
-					},
+					open_win_config = function()
+						local height = math.floor(vim.o.lines * 0.75)
+						local width = math.floor(vim.o.columns * 0.7)
+						return {
+							title = "nvim-tree",
+							title_pos = "center",
+							relative = "editor",
+							border = "single",
+							height = height,
+							width = width,
+							row = math.floor((vim.o.lines - height - 2) / 2),
+							col = math.floor((vim.o.columns - width - 2) / 2),
+						}
+					end,
 				},
 			},
 			renderer = { icons = { diagnostics_placement = "before" } },
