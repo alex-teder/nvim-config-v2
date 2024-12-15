@@ -42,15 +42,36 @@ return {
 	config = function(_, opts)
 		require("telescope").setup(opts)
 		require("telescope").load_extension("fzf")
-
 		local builtin = require("telescope.builtin")
+		local C = require("catppuccin.palettes").get_palette(require("catppuccin").options.flavour)
 
-		vim.keymap.set("n", "<leader>ff", builtin.git_files, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>fg", builtin.live_grep, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>w", builtin.buffers, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>gb", builtin.git_branches, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags, { noremap = true, silent = true })
-		vim.keymap.set("n", "<leader>fr", builtin.lsp_references, { noremap = true, silent = true })
+		local default_color = { fg = C.blue }
+		local colors = {
+			git_files = { fg = C.yellow },
+			live_grep = { fg = C.green },
+			help_tags = { fg = C.teal },
+			git_branches = { fg = C.mauve },
+		}
+
+		local function handle_open(picker_name)
+			return function()
+				local color = colors[picker_name]
+				if color then
+					vim.api.nvim_set_hl(0, "TelescopeBorder", color)
+				else
+					vim.api.nvim_set_hl(0, "TelescopeBorder", default_color)
+				end
+
+				builtin[picker_name]()
+			end
+		end
+
+		vim.keymap.set("n", "<leader>ff", handle_open("git_files"), { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>fg", handle_open("live_grep"), { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>w", handle_open("buffers"), { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>gb", handle_open("git_branches"), { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>fh", handle_open("help_tags"), { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>fr", handle_open("lsp_references"), { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>re", builtin.resume, { noremap = true, silent = true })
 	end,
 }

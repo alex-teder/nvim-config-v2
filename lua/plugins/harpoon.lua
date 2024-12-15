@@ -10,6 +10,7 @@ return {
 		local themes = require("telescope.themes")
 		local telescope_state = require("telescope.actions.state")
 		local Path = require("plenary.path")
+		local C = require("catppuccin.palettes").get_palette(require("catppuccin").options.flavour)
 
 		harpoon:setup({})
 
@@ -37,6 +38,8 @@ return {
 						previewer = conf.file_previewer({}),
 						sorter = conf.generic_sorter({}),
 						attach_mappings = function(prompt_buffer_number, map)
+							vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = C.red })
+
 							map("n", "dd", function()
 								local selected_entry = telescope_state.get_selected_entry()
 								local current_picker = telescope_state.get_current_picker(prompt_buffer_number)
