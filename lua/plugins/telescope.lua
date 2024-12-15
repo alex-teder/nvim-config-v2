@@ -33,6 +33,10 @@ return {
 					},
 				},
 			},
+			colorscheme = {
+				selection_caret = "> ",
+				enable_preview = true,
+			},
 		},
 	},
 	config = function(_, opts)
