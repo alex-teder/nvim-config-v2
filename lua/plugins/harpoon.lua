@@ -1,7 +1,7 @@
 return {
 	"ThePrimeagen/harpoon",
 	branch = "harpoon2",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = { "nvim-lua/plenary.nvim", "nvim-telescope/telescope.nvim" },
 	config = function()
 		local harpoon = require("harpoon")
 		local conf = require("telescope.config").values
@@ -18,16 +18,11 @@ return {
 		end
 
 		local make_finder = function()
-			local harpoon_files = harpoon:list()
-
 			local paths = {}
-			for _, item in ipairs(harpoon_files.items) do
+			for _, item in ipairs(harpoon:list().items) do
 				table.insert(paths, item.value)
 			end
-
-			return finders.new_table({
-				results = paths,
-			})
+			return finders.new_table({ results = paths })
 		end
 
 		local function toggle_telescope()
