@@ -20,6 +20,7 @@ return {
 			help_tags = { theme = "ivy" },
 			lsp_references = {
 				theme = "ivy",
+				initial_mode = "normal",
 				show_line = false,
 			},
 			buffers = {
@@ -56,12 +57,7 @@ return {
 		local function handle_open(picker_name)
 			return function()
 				local color = colors[picker_name]
-				if color then
-					vim.api.nvim_set_hl(0, "TelescopeBorder", color)
-				else
-					vim.api.nvim_set_hl(0, "TelescopeBorder", default_color)
-				end
-
+				vim.api.nvim_set_hl(0, "TelescopeBorder", color or default_color)
 				builtin[picker_name]()
 			end
 		end
