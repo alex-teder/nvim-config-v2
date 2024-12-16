@@ -16,7 +16,7 @@ return {
 		pickers = {
 			git_files = { theme = "ivy" },
 			live_grep = { theme = "ivy" },
-			git_branches = { theme = "ivy" },
+			git_branches = { theme = "ivy", previewer = false },
 			help_tags = { theme = "ivy" },
 			lsp_references = {
 				theme = "ivy",
