@@ -45,12 +45,17 @@ return {
 		require("telescope").load_extension("fzf")
 		local builtin = require("telescope.builtin")
 		local C = require("catppuccin.palettes").get_palette(require("catppuccin").options.flavour)
+		local utils = require("catppuccin.utils.colors")
+
+		local function darken(color)
+			return utils.darken(color, 0.85)
+		end
 
 		local default_color = { fg = C.blue }
 		local colors = {
-			git_files = { fg = C.yellow },
-			live_grep = { fg = C.green },
-			help_tags = { fg = C.teal },
+			git_files = { fg = darken(C.yellow) },
+			live_grep = { fg = darken(C.green) },
+			help_tags = { fg = darken(C.teal) },
 			git_branches = { fg = C.mauve },
 		}
 

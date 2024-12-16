@@ -11,6 +11,7 @@ return {
 		local telescope_state = require("telescope.actions.state")
 		local Path = require("plenary.path")
 		local C = require("catppuccin.palettes").get_palette(require("catppuccin").options.flavour)
+		local darken = require("catppuccin.utils.colors").darken
 
 		harpoon:setup({})
 
@@ -38,7 +39,7 @@ return {
 						previewer = conf.file_previewer({}),
 						sorter = conf.generic_sorter({}),
 						attach_mappings = function(prompt_buffer_number, map)
-							vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = C.red })
+							vim.api.nvim_set_hl(0, "TelescopeBorder", { fg = darken(C.red, 0.85) })
 
 							map("n", "dd", function()
 								local selected_entry = telescope_state.get_selected_entry()
