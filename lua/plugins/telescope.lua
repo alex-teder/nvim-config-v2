@@ -25,7 +25,6 @@ return {
 			},
 			buffers = {
 				theme = "ivy",
-				initial_mode = "normal",
 				show_all_buffers = true,
 				sort_lastused = true,
 				mappings = {

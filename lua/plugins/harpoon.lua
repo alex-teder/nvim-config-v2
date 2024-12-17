@@ -54,7 +54,7 @@ return {
 				:find()
 		end
 
-		vim.keymap.set("n", "<C-e>", toggle_telescope, { noremap = true })
+		vim.keymap.set("n", "<leader>e", toggle_telescope, { noremap = true })
 
 		vim.keymap.set("n", "<leader>a", function()
 			local relative_file =
