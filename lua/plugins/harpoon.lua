@@ -69,20 +69,20 @@ return {
 			end
 		end, { noremap = true })
 
-		vim.keymap.set("n", "<leader>1", function()
-			harpoon:list():select(1)
-		end)
-		vim.keymap.set("n", "<leader>2", function()
-			harpoon:list():select(2)
-		end)
-		vim.keymap.set("n", "<leader>3", function()
-			harpoon:list():select(3)
-		end)
-		vim.keymap.set("n", "<leader>4", function()
-			harpoon:list():select(4)
-		end)
-		vim.keymap.set("n", "<leader>5", function()
-			harpoon:list():select(5)
-		end)
+		local function handle_jump(n)
+			return function()
+				harpoon:list():select(n)
+			end
+		end
+
+		vim.keymap.set("n", "<leader>1", handle_jump(1))
+		vim.keymap.set("n", "<leader>2", handle_jump(2))
+		vim.keymap.set("n", "<leader>3", handle_jump(3))
+		vim.keymap.set("n", "<leader>4", handle_jump(4))
+		vim.keymap.set("n", "<leader>5", handle_jump(5))
+		vim.keymap.set("n", "<leader>6", handle_jump(6))
+		vim.keymap.set("n", "<leader>7", handle_jump(7))
+		vim.keymap.set("n", "<leader>8", handle_jump(8))
+		vim.keymap.set("n", "<leader>9", handle_jump(9))
 	end,
 }
