@@ -43,6 +43,7 @@ catppuccin.inactive = {
 
 return {
 	"nvim-lualine/lualine.nvim",
+	dependencies = { "arkav/lualine-lsp-progress" },
 	opts = {
 		options = {
 			icons_enabled = true,
@@ -62,8 +63,26 @@ return {
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "diff", "diagnostics" },
-			lualine_c = { { "filename", file_status = true, symbols = { modified = "●" } } },
-			lualine_x = { "encoding", "filetype", "filesize" },
+			lualine_c = {
+				{ "filename", file_status = true, symbols = { modified = "●" } },
+			},
+			lualine_x = {
+				"encoding",
+				{ "filetype", separator = "" },
+				{
+					"lsp_progress",
+					separator = "",
+					padding = 0,
+					separators = {
+						spinner = { pre = "", post = " " },
+					},
+					draw_empty = true,
+					display_components = { "spinner" },
+					timer = { spinner = 100 },
+					spinner_symbols = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+				},
+				"filesize",
+			},
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
 		},
