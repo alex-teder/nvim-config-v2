@@ -18,6 +18,11 @@ return {
 			live_grep = { theme = "ivy" },
 			git_branches = { theme = "ivy", previewer = false },
 			help_tags = { theme = "ivy" },
+			lsp_type_definitions = {
+				theme = "ivy",
+				initial_mode = "normal",
+				show_line = false,
+			},
 			lsp_references = {
 				theme = "ivy",
 				initial_mode = "normal",
