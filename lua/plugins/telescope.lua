@@ -14,6 +14,7 @@ return {
 			prompt_prefix = "󱞩 ",
 		},
 		pickers = {
+			registers = { initial_mode = "normal" },
 			git_files = { theme = "ivy" },
 			live_grep = { theme = "ivy" },
 			git_branches = { theme = "ivy", previewer = false },
@@ -57,6 +58,7 @@ return {
 
 		local default_color = { fg = C.blue }
 		local colors = {
+			registers = { fg = C.pink },
 			git_files = { fg = darken(C.yellow) },
 			live_grep = { fg = darken(C.green) },
 			help_tags = { fg = darken(C.teal) },
@@ -77,6 +79,7 @@ return {
 		vim.keymap.set("n", "<leader>gb", handle_open("git_branches"), { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>fh", handle_open("help_tags"), { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>fr", handle_open("lsp_references"), { noremap = true, silent = true })
+		vim.keymap.set("n", "<leader>cb", handle_open("registers"), { noremap = true, silent = true })
 		vim.keymap.set("n", "<leader>re", builtin.resume, { noremap = true, silent = true })
 	end,
 }
