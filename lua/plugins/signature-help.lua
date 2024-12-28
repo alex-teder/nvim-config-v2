@@ -3,5 +3,6 @@ return {
 	event = "VeryLazy",
 	opts = {
 		hint_enable = false,
+		timer_interval = 100,
 	},
 }
