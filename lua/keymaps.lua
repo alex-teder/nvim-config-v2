@@ -19,8 +19,5 @@ keymap.set("n", "g3", ":tabn 3<CR>", { noremap = true, silent = true })
 keymap.set("n", "g4", ":tabn 4<CR>", { noremap = true, silent = true })
 keymap.set("n", "g5", ":tabn 5<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<C-J>", "<C-e>", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-K>", "<C-y>", { noremap = true, silent = true })
-
 vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>dN", vim.diagnostic.goto_prev, { noremap = true, silent = true })
