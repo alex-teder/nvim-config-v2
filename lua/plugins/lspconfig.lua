@@ -2,27 +2,16 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
-		{ "folke/neodev.nvim", opts = {} },
+		"hrsh7th/cmp-nvim-lsp",
 	},
 	config = function()
-		-- import lspconfig plugin
-		local lspconfig = require("lspconfig")
-
-		-- import mason_lspconfig plugin
-		local mason_lspconfig = require("mason-lspconfig")
-
-		-- import cmp-nvim-lsp plugin
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
-				local keymap = vim.keymap
 				local opts = { buffer = ev.buf, silent = true }
-				-- Buffer local mappings.
-				-- See `:help vim.lsp.*` for documentation on any of the below functions
+				local keymap = vim.keymap
+
 				opts.desc = "Show LSP references"
 				keymap.set("n", "gr", vim.lsp.buf.references, opts) -- show definition, references
 
@@ -60,8 +49,10 @@ return {
 			float = { border = "single" },
 		})
 
-		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local lspconfig = require("lspconfig")
+		local mason_lspconfig = require("mason-lspconfig")
+
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		mason_lspconfig.setup_handlers({
 			-- default handler for installed servers
@@ -72,7 +63,6 @@ return {
 				})
 			end,
 			["cssls"] = function()
-				-- configure css server
 				lspconfig["cssls"].setup({
 					capabilities = capabilities,
 					settings = {
@@ -88,30 +78,13 @@ return {
 					},
 				})
 			end,
-			["svelte"] = function()
-				-- configure svelte server
-				lspconfig["svelte"].setup({
-					capabilities = capabilities,
-					on_attach = function(client)
-						vim.api.nvim_create_autocmd("BufWritePost", {
-							pattern = { "*.js", "*.ts" },
-							callback = function(ctx)
-								-- Here use ctx.match instead of ctx.file
-								client.notify("$/onDidChangeTsOrJsFile", { uri = ctx.match })
-							end,
-						})
-					end,
-				})
-			end,
 			["graphql"] = function()
-				-- configure graphql language server
 				lspconfig["graphql"].setup({
 					capabilities = capabilities,
 					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 				})
 			end,
 			["emmet_language_server"] = function()
-				-- configure emmet language server
 				lspconfig["emmet_language_server"].setup({
 					capabilities = capabilities,
 					filetypes = {
@@ -127,7 +100,6 @@ return {
 				})
 			end,
 			["lua_ls"] = function()
-				-- configure lua server (with special settings)
 				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
 					settings = {
@@ -148,11 +120,11 @@ return {
 					capabilities = capabilities,
 					init_options = {
 						plugins = {
-							{
-								name = "@vue/typescript-plugin",
-								location = "/home/ateder/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin",
-								languages = { "vue", "javascript", "typescript" },
-							},
+							-- {
+							-- 	name = "@vue/typescript-plugin",
+							-- 	location = "/home/ateder/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin",
+							-- 	languages = { "vue", "javascript", "typescript" },
+							-- },
 						},
 					},
 					filetypes = {

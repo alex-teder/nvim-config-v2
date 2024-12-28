@@ -1,5 +1,3 @@
-if vim.fn.exists("g:vscode") == 1 then
-    return
-end
-
-require("alexteder")
+require("keymaps")
+require("sets")
+require("lazy-nvim")

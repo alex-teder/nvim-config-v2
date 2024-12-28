@@ -3,8 +3,6 @@ return {
 	event = "VeryLazy",
 	opts = {
 		hint_enable = false,
+		timer_interval = 100,
 	},
-	config = function(_, opts)
-		require("lsp_signature").setup(opts)
-	end,
 }
