@@ -115,16 +115,21 @@ return {
 				})
 			end,
 			["ts_ls"] = function()
+				local plugins = {}
+
+				if require("mason-registry").get_package("vue-language-server"):is_installed() then
+					table.insert(plugins, {
+						name = "@vue/typescript-plugin",
+						location = vim.fn.stdpath("data")
+							.. "/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+						languages = { "vue", "javascript", "typescript" },
+					})
+				end
+
 				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
 					init_options = {
-						plugins = {
-							-- {
-							-- 	name = "@vue/typescript-plugin",
-							-- 	location = "/home/ateder/.nvm/versions/node/v22.11.0/lib/node_modules/@vue/typescript-plugin",
-							-- 	languages = { "vue", "javascript", "typescript" },
-							-- },
-						},
+						plugins = plugins,
 					},
 					filetypes = {
 						"javascript",
