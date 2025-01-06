@@ -10,6 +10,14 @@ return {
 			fzf = {},
 		},
 		defaults = {
+			buffer_previewer_maker = function(filepath, bufnr, opts)
+				local f = vim.fn.expand(filepath)
+				if f:match("%.env$") then
+					return false
+				end
+
+				require("telescope.previewers").buffer_previewer_maker(filepath, bufnr, opts)
+			end,
 			selection_caret = "  ",
 			prompt_prefix = "󱞩 ",
 		},
