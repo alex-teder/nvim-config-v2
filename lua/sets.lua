@@ -28,3 +28,4 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.fn.setreg("u", "ouseEffect(() => {}, []);jkIjkl")
 vim.fn.setreg("s", "oconst [_, set_] = useState();jk6bh")
+vim.fn.setreg("l", 'yoconsole.log()jki"", jkla;jkbblplllpIjk')
