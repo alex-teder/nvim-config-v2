@@ -25,3 +25,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+vim.fn.setreg("u", "ouseEffect(() => {}, []);jkIjkl")
+vim.fn.setreg("s", "oconst [_, set_] = useState();jk6bh")
