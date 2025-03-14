@@ -1,5 +1,6 @@
 return {
 	"stevearc/conform.nvim",
+	branch = "nvim-0.9",
 	event = { "BufReadPre", "BufNewFile" },
 	opts = {
 		formatters_by_ft = {
