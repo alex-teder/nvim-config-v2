@@ -23,7 +23,7 @@ return {
 		},
 		pickers = {
 			registers = { initial_mode = "normal" },
-			git_files = { theme = "ivy" },
+			git_files = { theme = "ivy", path_display = { "truncate" } },
 			live_grep = { theme = "ivy" },
 			git_branches = { theme = "ivy", previewer = false },
 			help_tags = { theme = "ivy" },
