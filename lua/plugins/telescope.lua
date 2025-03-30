@@ -10,6 +10,14 @@ return {
 			fzf = {},
 		},
 		defaults = {
+			mappings = {
+				i = { ["<C-p>"] = require("telescope.actions.layout").toggle_preview },
+				n = { ["<C-p>"] = require("telescope.actions.layout").toggle_preview },
+			},
+			-- layout_strategy = "bottom_pane",
+			-- layout_config = { height = 0.9 },
+			-- preview = { hide_on_startup = true },
+			path_display = { "truncate" },
 			buffer_previewer_maker = function(filepath, bufnr, opts)
 				local f = vim.fn.expand(filepath)
 				if f:match("%.env$") then
@@ -23,8 +31,8 @@ return {
 		},
 		pickers = {
 			registers = { initial_mode = "normal" },
-			git_files = { theme = "ivy" },
-			live_grep = { theme = "ivy" },
+			git_files = { theme = "ivy", preview = { hide_on_startup = true } },
+			live_grep = { theme = "ivy", disable_coordinates = true },
 			git_branches = { theme = "ivy", previewer = false },
 			help_tags = { theme = "ivy" },
 			lsp_type_definitions = {
@@ -41,6 +49,7 @@ return {
 				theme = "ivy",
 				show_all_buffers = true,
 				sort_lastused = true,
+				path_display = { "tail" },
 				mappings = {
 					n = {
 						["dd"] = "delete_buffer",
