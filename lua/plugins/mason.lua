@@ -57,6 +57,18 @@ return {
 					filetypes = { "graphql", "gql", "svelte", "typescriptreact", "javascriptreact" },
 				})
 			end,
+			["astro"] = function()
+				lspconfig["astro"].setup({
+					capabilities = capabilities,
+					filetypes = { "astro" },
+				})
+			end,
+			["tailwindcss"] = function()
+				lspconfig["tailwindcss"].setup({
+					capabilities = capabilities,
+					filetypes = { "html", "astro" },
+				})
+			end,
 			["emmet_language_server"] = function()
 				lspconfig["emmet_language_server"].setup({
 					capabilities = capabilities,
@@ -132,11 +144,14 @@ return {
 			"emmet_language_server",
 			"pyright",
 			"vue_ls",
+			"astro",
 			"rust_analyzer",
+			"tailwindcss",
+			"jsonls",
 		}
 
 		mason_tool_installer.setup({
-			ensure_installed = { "prettierd", "stylua", "eslint_d" },
+			ensure_installed = { "prettierd", "prettier", "stylua", "eslint_d" },
 		})
 
 		mason_lspconfig.setup({
