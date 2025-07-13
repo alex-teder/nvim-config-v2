@@ -88,13 +88,13 @@ return {
 					},
 				})
 			end,
-			["vue_ls"] = function()
-				-- NOTE: this lspconfig name is different from Mason
-				lspconfig["volar"].setup({
-					capabilities = capabilities,
-					filetypes = { "javascript", "typescript", "vue" },
-				})
-			end,
+			-- ["vue_ls"] = function()
+			-- 	-- NOTE: this lspconfig name is different from Mason
+			-- 	lspconfig["volar"].setup({
+			-- 		capabilities = capabilities,
+			-- 		filetypes = { "javascript", "typescript", "vue" },
+			-- 	})
+			-- end,
 			["ts_ls"] = function()
 				local plugins = {}
 
@@ -131,7 +131,7 @@ return {
 			"graphql",
 			"emmet_language_server",
 			"pyright",
-			"vue_ls",
+			-- "vue_ls",
 			"rust_analyzer",
 		}
 
