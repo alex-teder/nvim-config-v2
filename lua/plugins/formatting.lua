@@ -9,7 +9,6 @@ return {
 			typescriptreact = { "prettierd" },
 			vue = { "prettierd" },
 			svelte = { "prettierd" },
-			astro = { "prettier" },
 			css = { "prettierd" },
 			html = { "prettierd" },
 			json = { "prettierd" },
