@@ -28,6 +28,11 @@ return {
 					return false
 				end
 
+				local stat = vim.loop.fs_stat(f)
+				if stat and stat.size > 200 * 1024 then -- 200KB
+					return false
+				end
+
 				require("telescope.previewers").buffer_previewer_maker(filepath, bufnr, opts)
 			end,
 			selection_caret = "  ",
