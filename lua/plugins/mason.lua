@@ -12,6 +12,9 @@ return {
 				"prettierd",
 				"eslint_d",
 				"stylua",
+				"css-lsp",
+				"html-lsp",
+				"json-lsp",
 			},
 		})
 	end,
