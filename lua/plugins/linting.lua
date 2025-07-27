@@ -2,6 +2,8 @@ return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
+		vim.env.ESLINT_D_PPID = vim.fn.getpid()
+
 		local lint = require("lint")
 
 		lint.linters_by_ft = {
@@ -9,8 +11,6 @@ return {
 			typescript = { "eslint_d" },
 			javascriptreact = { "eslint_d" },
 			typescriptreact = { "eslint_d" },
-			vue = { "eslint_d" },
-			svelte = { "eslint_d" },
 		}
 
 		lint.linters.eslint_d = require("lint.util").wrap(lint.linters.eslint_d, function(diagnostic)

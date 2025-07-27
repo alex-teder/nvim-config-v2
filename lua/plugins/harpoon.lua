@@ -20,10 +20,23 @@ return {
 
 		local make_finder = function()
 			local paths = {}
-			for _, item in ipairs(harpoon:list().items) do
-				table.insert(paths, item.value)
+			for i, item in ipairs(harpoon:list().items) do
+				table.insert(paths, {
+					value = item.value,
+					display = i .. ". " .. item.value,
+					ordinal = item.value,
+				})
 			end
-			return finders.new_table({ results = paths })
+			return finders.new_table({
+				results = paths,
+				entry_maker = function(entry)
+					return {
+						value = entry.value,
+						display = entry.display,
+						ordinal = entry.ordinal,
+					}
+				end,
+			})
 		end
 
 		local function toggle_telescope()
@@ -61,10 +74,10 @@ return {
 			local item = harpoon:list():get_by_value(relative_file)
 
 			if item then
-				vim.notify("File already in Harpoon list.")
+				vim.notify("File already in Harpoon list.", vim.log.levels.WARN)
 			else
 				harpoon:list():add()
-				vim.notify("File added.")
+				vim.notify("File added: " .. relative_file, vim.log.levels.INFO)
 			end
 		end, { noremap = true })
 
