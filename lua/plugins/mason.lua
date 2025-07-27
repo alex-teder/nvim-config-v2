@@ -12,6 +12,7 @@ return {
 				"prettierd",
 				"eslint_d",
 				"stylua",
+				"mdx-analyzer",
 			},
 		})
 	end,
