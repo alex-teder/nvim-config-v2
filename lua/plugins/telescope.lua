@@ -42,7 +42,11 @@ return {
 		pickers = {
 			registers = { initial_mode = "normal" },
 			git_files = { theme = "ivy", preview = { hide_on_startup = true } },
-			live_grep = { theme = "ivy", disable_coordinates = true },
+			live_grep = {
+				theme = "ivy",
+				disable_coordinates = true,
+				additional_args = { "--hidden", "--glob", "!.git/**" },
+			},
 			git_branches = { theme = "ivy", previewer = false },
 			help_tags = { theme = "ivy" },
 			lsp_type_definitions = {
