@@ -20,7 +20,13 @@ return {
 			return diagnostic
 		end)
 
-		lint.linters.eslint_d.cwd = vim.fn.fnamemodify(vim.fn.findfile("package.json", ".;"), ":h")
+		local package_json = vim.fs.find("package.json", {
+			path = vim.fs.dirname(vim.api.nvim_buf_get_name(0)),
+			upward = true,
+		})[1]
+		if package_json then
+			lint.linters.eslint_d.cwd = vim.fs.dirname(package_json)
+		end
 
 		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
