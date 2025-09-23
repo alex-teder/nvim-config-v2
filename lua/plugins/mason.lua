@@ -15,8 +15,7 @@ return {
 				"css-lsp",
 				"html-lsp",
 				"json-lsp",
-				"python-lsp-server",
-				"mypy",
+				"pyright",
 			},
 		})
 	end,
