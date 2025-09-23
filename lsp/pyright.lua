@@ -38,6 +38,8 @@ return {
 				autoSearchPaths = true,
 				useLibraryCodeForTypes = true,
 				diagnosticMode = "openFilesOnly",
+				typeCheckingMode = "basic",
+				stubPath = "typings",
 			},
 		},
 	},
