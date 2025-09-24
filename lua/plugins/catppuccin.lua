@@ -6,7 +6,7 @@ return {
 		local opts = {
 			flavour = "mocha",
 			no_bold = true,
-			-- transparent_background = true,
+			transparent_background = true,
 			custom_highlights = function(colors)
 				return {
 					["@variable.member"] = { fg = colors.lavender },
