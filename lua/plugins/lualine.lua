@@ -57,6 +57,7 @@ return {
 						spinner = { "", "", "", "", "", "" },
 						done = "",
 					},
+					ignore_lsp = { "Augment Server" },
 				},
 			},
 			lualine_y = { "filetype" },
