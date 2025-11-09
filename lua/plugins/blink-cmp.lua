@@ -56,8 +56,19 @@ return {
 		-- Default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, due to `opts_extend`
 		sources = {
-			default = { "lsp", "buffer", "path", "snippets", "omni" },
+			default = {
+				"lsp",
+				"buffer",
+				-- "snippets",
+				"path",
+				"omni",
+			},
 			providers = {},
+			transform_items = function(_, items)
+				return vim.tbl_filter(function(item)
+					return not (item.client_name == "Augment Server")
+				end, items)
+			end,
 		},
 
 		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
