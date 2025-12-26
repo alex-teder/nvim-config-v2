@@ -22,6 +22,7 @@ opt.writebackup = false
 
 opt.foldmethod = "indent"
 opt.foldenable = false
+opt.foldlevelstart = 99
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
