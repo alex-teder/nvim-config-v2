@@ -20,6 +20,9 @@ opt.signcolumn = "yes"
 opt.swapfile = false
 opt.writebackup = false
 
+opt.foldmethod = "indent"
+opt.foldenable = false
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	callback = function()
 		vim.highlight.on_yank()
