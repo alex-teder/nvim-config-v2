@@ -1,4 +1,4 @@
 return {
 	"davidmh/mdx.nvim",
-	config = true,
+	config = function() end,
 }
