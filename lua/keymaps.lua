@@ -18,3 +18,17 @@ keymap.set("n", "g5", ":tabn 5<CR>", { noremap = true, silent = true })
 
 keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { noremap = true, silent = true })
 keymap.set("n", "<leader>dN", vim.diagnostic.goto_prev, { noremap = true, silent = true })
+
+local function organize_imports()
+	local client = vim.lsp.get_clients({ name = "ts_ls", bufnr = 0 })[1]
+
+	client:exec_cmd({
+		title = "organize_imports",
+		command = "_typescript.organizeImports",
+		arguments = {
+			vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()),
+		},
+	}, { bufnr = vim.api.nvim_get_current_buf() })
+end
+
+keymap.set("n", "<leader>oi", organize_imports, { noremap = true, silent = true })
