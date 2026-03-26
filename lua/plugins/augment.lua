@@ -3,4 +3,7 @@ vim.api.nvim_create_user_command("AugmentToggleCompletions", function()
 	print("Augment completions " .. tostring(not vim.g.augment_disable_completions and "enabled" or "disabled"))
 end, {})
 
-return { "augmentcode/augment.vim" }
+return {
+	"augmentcode/augment.vim",
+	enabled = false,
+}
